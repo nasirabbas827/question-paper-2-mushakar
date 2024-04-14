@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="dashboard-container">
+        <h2 class="welcome-message">Welcome, {{ student.name }}!</h2>
+        <h3 class="courses-header">Your Enrolled Courses:</h3>
+        <ul class="course-list">
+            {% for course in courses %}
+                <li class="course-item">
+                    <div class="course-details">
+                        <strong class="detail-label">Name:</strong> {{ course.name }}<br>
+                        <strong class="detail-label">Code:</strong> {{ course.code }}<br>
+                        <strong class="detail-label">Description:</strong> {{ course.description }}<br>
+                        <strong class="detail-label">Credits:</strong> {{ course.credits }}<br>
+                        <strong class="detail-label">Study Program:</strong> {{ course.study_program.name }}<br>
+                    </div>
+                    <div class="course-actions">
+                        <a href="{% url 'view_exams' course.id %}" class="btn btn-primary">View Exams</a>
+                    </div>
+                    {% if course.picture %}
+                        <img class="course-picture" src="{{ course.picture.url }}" alt="{{ course.name }} Picture">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

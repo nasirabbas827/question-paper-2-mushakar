@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="dashboard-container">
+        <h1>Difficulty Levels for {{ exam.name }}</h1>
+        <p>Welcome, {{ student.name }}!</p>
+        
+        <ul>
+            {% for level in difficulty_levels %}
+            <li>
+                <a href="{% url 'view_questions_by_difficulty' exam.id level %}" class="btn btn-primary">{{ level }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'submit_paper' exam.id %}" class="btn btn-success">Submit Paper</a>
+    </div>
+{% endblock %}

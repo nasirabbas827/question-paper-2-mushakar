@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="dashboard-container">
+        <h1>All Exams for {{ course.name }}</h1>
+        <p>Welcome, {{ student.name }}!</p>
+        
+        <ul>
+            {% for exam in exams %}
+            <li>
+                <strong>Name:</strong> {{ exam.name }}<br>
+                <strong>Date:</strong> {{ exam.date }}<br>
+                <!-- Add any other exam details here -->
+
+                <a href="{% url 'view_difficulty_levels' exam.id %}" class="btn btn-primary">View Difficulty Levels</a>
+            </li>
+            {% empty %}
+            <li>No exams available for this course.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

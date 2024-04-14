@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Your Paper Submissions</h1>
+    <table class="submission-table">
+        <thead>
+            <tr>
+                <th>Exam</th>
+                <th>Marks Obtained / Status</th>
+                <th>Total Marks</th>
+                <th>Comment</th>
+                <th>Download File</th>
+                <th>Submission Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission.exam.name }}</td>
+                    <td>
+                        {% if submission.marks_obtained %}
+                            {{ submission.marks_obtained }}
+                        {% else %}
+                            {{ submission.submission_status }}
+                        {% endif %}
+                    </td>
+                    <td>{{ submission.total_marks }}</td>
+                    <td>{{ submission.comment }}</td>
+                    <td>
+                        {% if submission.uploaded_file %}
+                            <a href="{{ submission.uploaded_file.url }}" class="btn btn-primary" download>Download</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td>{{ submission.submission_status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

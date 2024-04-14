@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="dashboard-container">
+        <h1>Questions for Difficulty Level "{{ difficulty }}"</h1>
+        <p>Welcome, {{ student.name }}!</p>
+        
+        <ul>
+            {% for question in questions %}
+            <li>
+                <strong>Question:</strong> {{ question.QuestionText }}<br>
+                <strong>Options:</strong><br>
+                <ul>
+                    <li>{{ question.Option1 }}</li>
+                    <li>{{ question.Option2 }}</li>
+                    <li>{{ question.Option3 }}</li>
+                    <li>{{ question.Option4 }}</li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'download_questions' exam.id difficulty %}" class="btn btn-primary">Download Questions as DOCX</a>
+    </div>
+{% endblock %}

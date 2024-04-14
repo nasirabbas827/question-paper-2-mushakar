@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-container">
+    <h2 class="login-header">Student Signup</h2>
+    {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        <label for="student_id" class="form-label">Student ID:</label>
+        <input type="text" name="student_id" required class="form-input"><br>
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" name="name" required class="form-input"><br>
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" name="email" required class="form-input"><br>
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" name="password" required class="form-input"><br>
+        <label for="age" class="form-label">Age:</label>
+        <input type="number" name="age" required class="form-input"><br>
+        <label for="address" class="form-label">Address:</label>
+        <textarea name="address" required class="form-input"></textarea><br>
+        <label for="date_enrolled" class="form-label">Date Enrolled:</label>
+        <input type="date" name="date_enrolled" required class="form-input"><br>
+        <label for="study_program" class="form-label">Study Program:</label>
+        <select name="study_program" required class="form-input">
+            <option value="">Select Study Program</option>
+            {% for program in study_programs %}
+                <option value="{{ program.id }}">{{ program.name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit" class="form-button">Sign Up</button>
+    </form>
+    <p>If you already have an account, please <a href="{% url 'login' %}">login</a>.</p>
+</div>
+{% endblock %}
